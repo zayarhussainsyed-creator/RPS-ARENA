@@ -1,157 +1,88 @@
-// ================= DIGITAL CLOCK =================
+let mode = "";
+let difficulty = "";
+
+let bestOf = 3;
+
+let playerScore = 0;
+let opponentScore = 0;
+
+let round = 1;
+
+let playerChoice = "";
+let player2Choice = "";
+
+let stats = JSON.parse(localStorage.getItem("rpsStats")) || {
+
+    matches: 0,
+    wins: 0,
+    losses: 0,
+    draws: 0,
+    points: 0
+
+};
 
 
-function updateClock() {
-
-
-    let now = new Date();
-
-
-    let timezone = document.getElementById("timezone").value;
-
-
-
-    let time = new Date(
-        now.toLocaleString("en-US", {
-            timeZone: timezone
-        })
-    );
-
-
-
-    let hours = time.getHours();
-
-    let minutes = time.getMinutes();
-
-    let seconds = time.getSeconds();
-
-
-
-    let ampm = hours >= 12 ? "PM" : "AM";
+const moves = ["rock","paper","scissors"];
 
 
 
-    hours = hours % 12;
 
 
-    if(hours === 0){
+// ================= MODE SELECTION =================
 
-        hours = 12;
+
+function selectMode(selectedMode){
+
+    mode = selectedMode;
+
+
+    document
+    .getElementById("matchBox")
+    .classList.add("hidden");
+
+
+
+    if(mode === "computer"){
+
+
+        document
+        .getElementById("difficultyBox")
+        .classList.remove("hidden");
+
+
+        document
+        .getElementById("player2Name")
+        .innerHTML="Computer";
+
 
     }
 
 
 
-    hours = hours.toString().padStart(2,"0");
+    else{
 
-    minutes = minutes.toString().padStart(2,"0");
 
-    seconds = seconds.toString().padStart(2,"0");
+        document
+        .getElementById("difficultyBox")
+        .classList.add("hidden");
 
 
+        document
+        .getElementById("matchBox")
+        .classList.remove("hidden");
 
-    document.getElementById("time").innerHTML =
 
-    `${hours}:${minutes}:${seconds} ${ampm}`;
+        document
+        .getElementById("player2Name")
+        .innerHTML="Player 2";
 
 
+        document
+        .getElementById("multiplayerBox")
+        .classList.remove("hidden");
 
 
-
-    let day = time.toLocaleDateString("en-US",{
-
-        weekday:"long"
-
-    });
-
-
-
-    let date = time.toLocaleDateString("en-US",{
-
-        day:"numeric",
-
-        month:"long",
-
-        year:"numeric"
-
-    });
-
-
-
-
-    document.getElementById("date").innerHTML =
-
-    `${day}, ${date}`;
-
-
-
-}
-
-
-
-
-// Run clock
-
-updateClock();
-
-setInterval(updateClock,1000);
-
-
-
-
-
-// Change timezone
-
-document.getElementById("timezone")
-.addEventListener("change", updateClock);
-
-
-
-
-
-
-
-
-// ================= STOPWATCH =================
-
-
-let stopwatchSeconds = 0;
-
-let stopwatchInterval = null;
-
-
-
-
-function displayStopwatch(){
-
-
-
-    let hrs = Math.floor(stopwatchSeconds / 3600);
-
-
-
-    let mins = Math.floor(
-        (stopwatchSeconds % 3600) / 60
-    );
-
-
-
-    let secs = stopwatchSeconds % 60;
-
-
-
-
-    hrs = hrs.toString().padStart(2,"0");
-
-    mins = mins.toString().padStart(2,"0");
-
-    secs = secs.toString().padStart(2,"0");
-
-
-
-    document.getElementById("stopwatch").innerHTML =
-
-    `${hrs}:${mins}:${secs}`;
+    }
 
 
 }
@@ -161,160 +92,59 @@ function displayStopwatch(){
 
 
 
-document.getElementById("start").onclick=function(){
 
+// ================= DIFFICULTY =================
 
-    if(stopwatchInterval === null){
 
+function setDifficulty(level){
 
-        stopwatchInterval=setInterval(()=>{
+    difficulty = level;
 
 
-            stopwatchSeconds++;
+    document
+    .getElementById("matchBox")
+    .classList.remove("hidden");
 
-            displayStopwatch();
 
+}
 
-        },1000);
 
 
-    }
 
 
-};
 
 
+// ================= MATCH TYPE =================
 
 
+function setMatch(number){
 
+    bestOf = number;
 
-document.getElementById("pause").onclick=function(){
 
+    document
+    .getElementById("matchTitle")
+    .innerHTML =
+    "Best Of " + number;
 
-    clearInterval(stopwatchInterval);
 
+}
 
-    stopwatchInterval=null;
 
 
-};
 
 
 
 
+// ================= START GAME =================
 
 
-document.getElementById("reset").onclick=function(){
+function startGame(){
 
 
-    clearInterval(stopwatchInterval);
+    if(mode===""){
 
-
-    stopwatchInterval=null;
-
-
-    stopwatchSeconds=0;
-
-
-    displayStopwatch();
-
-
-};
-
-
-
-
-
-
-
-
-// ================= ALARM SYSTEM =================
-
-
-
-let alarmTime = "";
-
-
-
-
-document.getElementById("setAlarm").onclick=function(){
-
-
-
-    let time = document.getElementById("alarmTime").value;
-
-
-
-    let format = document.getElementById("alarmFormat").value;
-
-
-
-
-    if(time){
-
-
-
-        let parts = time.split(":");
-
-
-
-        let hour = parseInt(parts[0]);
-
-        let minute = parts[1];
-
-
-
-        if(hour > 12){
-
-            hour = hour - 12;
-
-        }
-
-
-
-        if(hour === 0){
-
-            hour = 12;
-
-        }
-
-
-
-
-        hour = hour.toString().padStart(2,"0");
-
-
-
-        alarmTime = `${hour}:${minute} ${format}`;
-
-
-
-
-
-        document.getElementById("alarmStatus").innerHTML =
-
-        "Alarm Set For: " + alarmTime;
-
-
-
-    }
-
-
-
-};
-
-
-
-
-
-
-
-
-function checkAlarm(){
-
-
-
-    if(alarmTime === ""){
+        alert("Choose Game Mode");
 
         return;
 
@@ -322,30 +152,136 @@ function checkAlarm(){
 
 
 
+    if(mode==="computer" && difficulty===""){
 
+        alert("Choose Difficulty");
 
-    let now = new Date();
+        return;
 
-
-
-    let hours = now.getHours();
-
-    let minutes = now.getMinutes();
-
-
-
-    let ampm = hours >= 12 ? "PM":"AM";
+    }
 
 
 
+    document
+    .getElementById("startPage")
+    .classList.add("hidden");
 
-    hours = hours % 12;
+
+
+    document
+    .getElementById("gamePage")
+    .classList.remove("hidden");
+
+
+}
 
 
 
-    if(hours === 0){
 
-        hours = 12;
+
+
+
+// ================= PLAYER 1 MOVE =================
+
+
+function selectChoice(choice){
+
+
+    playerChoice = choice;
+
+
+
+    if(mode==="computer"){
+
+
+        let computer =
+        computerMove();
+
+
+        playRound(
+            playerChoice,
+            computer
+        );
+
+
+    }
+
+
+
+    else{
+
+
+        document
+        .getElementById("waitingText")
+        .innerHTML =
+        "Player 1 Selected ✔ Waiting for Player 2";
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+// ================= PLAYER 2 MOVE =================
+
+
+function playerTwoChoice(choice){
+
+
+    player2Choice = choice;
+
+
+
+    if(playerChoice===""){
+
+
+        document
+        .getElementById("waitingText")
+        .innerHTML =
+        "Waiting for Player 1";
+
+
+        return;
+
+    }
+
+
+
+    playRound(
+        playerChoice,
+        player2Choice
+    );
+
+
+}
+
+
+
+
+
+
+
+
+// ================= COMPUTER AI =================
+
+
+function computerMove(){
+
+
+
+    if(difficulty==="easy"){
+
+
+        return moves[
+            Math.floor(Math.random()*3)
+        ];
+
 
     }
 
@@ -353,41 +289,142 @@ function checkAlarm(){
 
 
 
-    hours = hours.toString().padStart(2,"0");
-
-    minutes = minutes.toString().padStart(2,"0");
+    if(difficulty==="medium"){
 
 
-
-
-
-    let currentTime =
-
-    `${hours}:${minutes} ${ampm}`;
+        let random =
+        Math.random();
 
 
 
+        if(random < 0.5){
 
 
-
-    if(currentTime === alarmTime){
-
-
-
-        alert("⏰ Alarm Ringing!");
+            return moves[
+            Math.floor(Math.random()*3)
+            ];
 
 
-
-        alarmTime="";
-
+        }
 
 
-        document.getElementById("alarmStatus").innerHTML =
-
-        "No Alarm Set";
+        return counterMove(playerChoice);
 
 
     }
+
+
+
+
+
+
+    if(difficulty==="hard"){
+
+
+        return counterMove(playerChoice);
+
+
+    }
+
+
+}
+
+
+
+
+
+
+function counterMove(move){
+
+
+    if(move==="rock")
+        return "paper";
+
+
+    if(move==="paper")
+        return "scissors";
+
+
+    return "rock";
+
+
+}
+
+
+
+
+
+
+
+// ================= GAME ROUND =================
+
+
+function playRound(player, opponent){
+
+
+    showOpponent(opponent);
+
+
+
+    let result =
+    checkWinner(player,opponent);
+
+
+
+
+    if(result==="win"){
+
+
+        playerScore++;
+
+
+        document
+        .getElementById("result")
+        .innerHTML =
+        "🎉 You Won This Round";
+
+
+    }
+
+
+
+    else if(result==="lose"){
+
+
+        opponentScore++;
+
+
+        document
+        .getElementById("result")
+        .innerHTML =
+        "😢 Opponent Won This Round";
+
+
+    }
+
+
+
+    else{
+
+
+        document
+        .getElementById("result")
+        .innerHTML =
+        "🤝 Tie! Playing Same Round Again";
+
+
+        resetChoices();
+
+        return;
+
+    }
+
+
+
+    updateScore();
+
+
+    checkMatchWinner();
 
 
 
@@ -395,7 +432,52 @@ function checkAlarm(){
 
 
 
-setInterval(checkAlarm,1000);
+
+
+
+
+
+// ================= WINNER CHECK =================
+
+
+function checkWinner(player,opponent){
+
+
+
+    if(player===opponent){
+
+        return "draw";
+
+    }
+
+
+
+    if(
+
+        player==="rock" &&
+        opponent==="scissors"
+
+        ||
+
+        player==="paper" &&
+        opponent==="rock"
+
+        ||
+
+        player==="scissors" &&
+        opponent==="paper"
+
+    ){
+
+        return "win";
+
+    }
+
+
+    return "lose";
+
+
+}
 
 
 
@@ -403,55 +485,383 @@ setInterval(checkAlarm,1000);
 
 
 
+// ================= MATCH WINNER =================
 
 
-// ================= DARK MODE =================
+function checkMatchWinner(){
 
 
-
-document.getElementById("themeBtn").onclick=function(){
-
-
-    document.body.classList.toggle("light");
-
-
-};
+    let needed =
+    Math.ceil(bestOf/2);
 
 
 
+    if(playerScore===needed){
 
 
-
-
-
-
-// ================= FULLSCREEN =================
-
-
-
-document.getElementById("fullscreenBtn").onclick=function(){
-
-
-
-    if(!document.fullscreenElement){
-
-
-
-        document.documentElement.requestFullscreen();
-
+        finishGame(true);
 
 
     }
+
+
+
+    else if(opponentScore===needed){
+
+
+        finishGame(false);
+
+
+    }
+
+
 
     else{
 
 
-        document.exitFullscreen();
+        round++;
 
+
+        resetChoices();
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+// ================= FINISH =================
+
+
+function finishGame(playerWon){
+
+
+
+    document
+    .getElementById("gamePage")
+    .classList.add("hidden");
+
+
+
+    document
+    .getElementById("resultPage")
+    .classList.remove("hidden");
+
+
+
+
+
+    if(playerWon){
+
+
+        document
+        .getElementById("winnerText")
+        .innerHTML =
+        "🏆 You Won The Match";
+
+
+
+        stats.wins++;
+
+        stats.points +=3;
 
 
     }
 
 
 
-};
+    else{
+
+
+        document
+        .getElementById("winnerText")
+        .innerHTML =
+        "😢 Opponent Won";
+
+
+        stats.losses++;
+
+
+    }
+
+
+
+    stats.matches++;
+
+
+
+    document
+    .getElementById("finalResult")
+    .innerHTML =
+
+    playerScore +
+    " - " +
+    opponentScore;
+
+
+
+    saveStats();
+
+
+}
+
+
+
+
+
+
+
+
+// ================= DISPLAY =================
+
+
+function showOpponent(choice){
+
+
+    let emoji = {
+
+
+        rock:"🪨",
+
+        paper:"📄",
+
+        scissors:"✂️"
+
+
+    };
+
+
+
+    document
+    .getElementById("computerChoice")
+    .innerHTML =
+    emoji[choice];
+
+
+}
+
+
+
+
+
+
+
+
+function updateScore(){
+
+
+    document
+    .getElementById("playerScore")
+    .innerHTML =
+    playerScore;
+
+
+
+    document
+    .getElementById("opponentScore")
+    .innerHTML =
+    opponentScore;
+
+
+
+    document
+    .getElementById("roundNumber")
+    .innerHTML =
+    round;
+
+
+}
+
+
+
+
+
+
+
+
+function resetChoices(){
+
+
+    playerChoice="";
+
+    player2Choice="";
+
+
+}
+
+
+
+
+
+
+
+
+// ================= BUTTONS =================
+
+
+function restartMatch(){
+
+
+    playerScore=0;
+
+    opponentScore=0;
+
+    round=1;
+
+
+    document
+    .getElementById("resultPage")
+    .classList.add("hidden");
+
+
+    document
+    .getElementById("gamePage")
+    .classList.remove("hidden");
+
+
+    updateScore();
+
+
+}
+
+
+
+
+
+function restartGame(){
+
+
+    playerScore=0;
+
+    opponentScore=0;
+
+    round=1;
+
+
+    updateScore();
+
+
+}
+
+
+
+
+
+
+function goHome(){
+
+
+    location.reload();
+
+
+}
+
+
+
+
+
+
+
+// ================= DASHBOARD =================
+
+
+function showDashboard(){
+
+
+    document
+    .getElementById("dashboard")
+    .classList.remove("hidden");
+
+
+    updateDashboard();
+
+
+}
+
+
+
+
+
+function hideDashboard(){
+
+
+    document
+    .getElementById("dashboard")
+    .classList.add("hidden");
+
+
+}
+
+
+
+
+
+
+
+function saveStats(){
+
+
+    localStorage.setItem(
+
+        "rpsStats",
+
+        JSON.stringify(stats)
+
+    );
+
+
+}
+
+
+
+
+
+
+
+function updateDashboard(){
+
+
+
+    document
+    .getElementById("matches")
+    .innerHTML =
+    stats.matches;
+
+
+
+    document
+    .getElementById("wins")
+    .innerHTML =
+    stats.wins;
+
+
+
+    document
+    .getElementById("losses")
+    .innerHTML =
+    stats.losses;
+
+
+
+    document
+    .getElementById("draws")
+    .innerHTML =
+    stats.draws;
+
+
+
+    document
+    .getElementById("points")
+    .innerHTML =
+    stats.points;
+
+
+
+}
