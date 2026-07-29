@@ -4,11 +4,9 @@
 <head>
 
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Advanced Digital Clock</title>
-
+    <title>Rock Paper Scissors Ultimate</title>
 
     <link rel="stylesheet" href="style.css">
 
@@ -18,179 +16,189 @@
 <body>
 
 
-    <div class="clock-container">
+<!-- ================= START PAGE ================= -->
 
+<div class="container" id="startPage">
 
 
-        <!-- Title -->
+    <h1>🎮 Rock Paper Scissors Ultimate</h1>
 
-        <h1>Digital Clock</h1>
+    <p>Enter The Battle Arena</p>
 
 
 
-        <!-- Main Clock -->
+    <!-- Mode Selection -->
 
+    <div class="options">
 
-        <div id="time">
 
-            00:00:00 AM
+        <button onclick="selectMode('computer')">
+            🤖 Computer Mode
+        </button>
 
-        </div>
 
+        <button onclick="selectMode('multiplayer')">
+            👥 Multiplayer
+        </button>
 
 
-        <div id="date">
+    </div>
 
-            Loading Date...
 
-        </div>
 
 
 
+    <!-- Difficulty Only For Computer -->
 
 
-        <!-- Time Zone Section -->
+    <div id="difficultyBox" class="hidden">
 
 
-        <div class="section">
+        <h2>
+            Select Difficulty
+        </h2>
 
 
-            <h2>🌍 Select Time Zone</h2>
+        <button onclick="setDifficulty('easy')">
+            🟢 Easy
+        </button>
 
 
-            <select id="timezone">
+        <button onclick="setDifficulty('medium')">
+            🟡 Medium
+        </button>
 
 
-                <option value="Asia/Kolkata">
+        <button onclick="setDifficulty('hard')">
+            🔴 Hard
+        </button>
 
-                    India 🇮🇳
 
-                </option>
+    </div>
 
 
-                <option value="America/New_York">
 
-                    USA - New York 🇺🇸
 
-                </option>
 
 
-                <option value="America/Los_Angeles">
 
-                    USA - Los Angeles 🇺🇸
+    <!-- Match Selection -->
 
-                </option>
 
+    <div id="matchBox" class="hidden">
 
-                <option value="Europe/London">
 
-                    UK 🇬🇧
+        <h2>
+            Select Match Type
+        </h2>
 
-                </option>
 
+        <button onclick="setMatch(3)">
+            🏆 Best Of 3
+        </button>
 
-                <option value="Asia/Tokyo">
 
-                    Japan 🇯🇵
+        <button onclick="setMatch(5)">
+            🏆 Best Of 5
+        </button>
 
-                </option>
 
 
-                <option value="Australia/Sydney">
+    </div>
 
-                    Australia 🇦🇺
 
-                </option>
 
 
-                <option value="Asia/Dubai">
 
-                    UAE 🇦🇪
+    <button class="startBtn" onclick="startGame()">
 
-                </option>
+        🚀 Start Game
 
+    </button>
 
-                <option value="Asia/Shanghai">
 
-                    China 🇨🇳
 
-                </option>
+</div>
 
 
-                <option value="Europe/Paris">
 
-                    France 🇫🇷
 
-                </option>
 
 
-                <option value="Asia/Singapore">
 
-                    Singapore 🇸🇬
 
-                </option>
 
+<!-- ================= GAME PAGE ================= -->
 
-                <option value="America/Toronto">
 
-                    Canada 🇨🇦
 
-                </option>
+<div class="container hidden" id="gamePage">
 
 
-            </select>
+    <h1>
+        🔥 Battle Arena 🔥
+    </h1>
 
 
-        </div>
 
+    <h2 id="matchTitle">
+        Best Of 3
+    </h2>
 
 
 
+    <h3>
 
+        Round:
+        <span id="roundNumber">
+            1
+        </span>
 
-        <!-- Stopwatch Section -->
+    </h3>
 
 
-        <div class="section">
 
 
-            <h2>⏱ Stopwatch</h2>
 
 
+    <div class="players">
 
-            <div id="stopwatch">
 
-                00:00:00
+
+
+
+        <!-- Player 1 -->
+
+
+        <div class="playerCard">
+
+
+            <h2>
+                Player
+            </h2>
+
+
+            <div class="choices">
+
+
+                <button onclick="selectChoice('rock')">
+                    🪨
+                </button>
+
+
+                <button onclick="selectChoice('paper')">
+                    📄
+                </button>
+
+
+                <button onclick="selectChoice('scissors')">
+                    ✂️
+                </button>
+
 
             </div>
 
 
-
-
-            <button id="start">
-
-                Start
-
-            </button>
-
-
-
-            <button id="pause">
-
-                Pause
-
-            </button>
-
-
-
-            <button id="reset">
-
-                Reset
-
-            </button>
-
-
-
         </div>
 
 
@@ -199,94 +207,23 @@
 
 
 
-
-        <!-- Alarm Section -->
-
-
-        <div class="section">
+        <!-- Opponent -->
 
 
-            <h2>🔔 Alarm Clock</h2>
+        <div class="playerCard">
 
 
-
-
-            <input type="time" id="alarmTime">
+            <h2 id="player2Name">
+                Computer
+            </h2>
 
 
 
-            <select id="alarmFormat">
+            <div id="computerChoice">
 
+                ❓
 
-                <option value="AM">
-
-                    AM
-
-                </option>
-
-
-                <option value="PM">
-
-                    PM
-
-                </option>
-
-
-            </select>
-
-
-
-
-            <br>
-
-
-            <button id="setAlarm">
-
-                Set Alarm
-
-            </button>
-
-
-
-            <p id="alarmStatus">
-
-                No Alarm Set
-
-            </p>
-
-
-
-        </div>
-
-
-
-
-
-
-
-
-        <!-- Control Buttons -->
-
-
-        <div class="controls">
-
-
-
-            <button id="themeBtn">
-
-                🌙 Dark Mode
-
-            </button>
-
-
-
-
-            <button id="fullscreenBtn">
-
-                ⛶ Full Screen
-
-            </button>
-
+            </div>
 
 
         </div>
@@ -301,8 +238,289 @@
 
 
 
-    <script src="script.js"></script>
 
+
+    <!-- Multiplayer Selection -->
+
+
+    <div id="multiplayerBox" class="hidden">
+
+
+        <h2>
+            Player 2 Select Move
+        </h2>
+
+
+        <button onclick="playerTwoChoice('rock')">
+            🪨
+        </button>
+
+
+        <button onclick="playerTwoChoice('paper')">
+            📄
+        </button>
+
+
+        <button onclick="playerTwoChoice('scissors')">
+            ✂️
+        </button>
+
+
+
+        <p id="waitingText">
+
+            Waiting...
+
+        </p>
+
+
+    </div>
+
+
+
+
+
+
+
+    <!-- Result -->
+
+
+    <h2 id="result">
+
+        Make Your Move
+
+    </h2>
+
+
+
+
+
+
+
+    <!-- Round Score -->
+
+
+    <div class="matchScore">
+
+
+        <h2>
+            Current Match Score
+        </h2>
+
+
+        <h3>
+
+
+            <span id="playerScore">
+                0
+            </span>
+
+
+            -
+
+            <span id="opponentScore">
+                0
+            </span>
+
+
+        </h3>
+
+
+    </div>
+
+
+
+
+
+
+    <button onclick="showDashboard()">
+
+        📊 Total Score
+
+    </button>
+
+
+
+
+    <button onclick="restartGame()">
+
+        🔄 Restart
+
+    </button>
+
+
+
+
+    <button onclick="goHome()">
+
+        🏠 Home
+
+    </button>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- ================= RESULT PAGE ================= -->
+
+
+<div class="container hidden" id="resultPage">
+
+
+    <h1>
+        🏆 Match Result
+    </h1>
+
+
+
+    <h2 id="winnerText">
+
+    </h2>
+
+
+
+
+    <div class="finalScore">
+
+
+        <h2>
+            Final Score
+        </h2>
+
+
+        <p id="finalResult">
+
+        </p>
+
+
+    </div>
+
+
+
+
+    <button onclick="restartMatch()">
+
+        🔄 Play Again
+
+    </button>
+
+
+
+    <button onclick="showDashboard()">
+
+        📊 Dashboard
+
+    </button>
+
+
+
+
+    <button onclick="goHome()">
+
+        🏠 Home
+
+    </button>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- ================= DASHBOARD ================= -->
+
+
+<div class="container hidden" id="dashboard">
+
+
+    <h1>
+        📊 Total Score
+    </h1>
+
+
+
+    <div class="stats">
+
+
+        <p>
+            Matches:
+            <span id="matches">
+                0
+            </span>
+        </p>
+
+
+        <p>
+            Wins:
+            <span id="wins">
+                0
+            </span>
+        </p>
+
+
+        <p>
+            Losses:
+            <span id="losses">
+                0
+            </span>
+        </p>
+
+
+        <p>
+            Draws:
+            <span id="draws">
+                0
+            </span>
+        </p>
+
+
+        <p>
+            Points:
+            <span id="points">
+                0
+            </span>
+        </p>
+
+
+
+    </div>
+
+
+
+
+    <button onclick="hideDashboard()">
+
+        Close
+
+    </button>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<script src="script.js"></script>
 
 
 </body>
