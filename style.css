@@ -1,0 +1,514 @@
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+    font-family: "Poppins", Arial, sans-serif;
+
+}
+
+
+
+body {
+
+
+    min-height: 100vh;
+
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+
+
+    background: linear-gradient(
+        135deg,
+        #141e30,
+        #243b55,
+        #000000
+    );
+
+
+    background-size: 300% 300%;
+
+
+    animation: moveBackground 8s infinite alternate;
+
+
+    color: white;
+
+
+}
+
+
+
+
+
+@keyframes moveBackground {
+
+
+    0% {
+
+        background-position: left;
+
+    }
+
+
+    100% {
+
+        background-position: right;
+
+    }
+
+
+}
+
+
+
+
+
+
+.clock-container {
+
+
+    width: 450px;
+
+
+    padding: 35px;
+
+
+
+    text-align: center;
+
+
+
+    background: rgba(255,255,255,0.12);
+
+
+
+    border-radius: 25px;
+
+
+
+    backdrop-filter: blur(15px);
+
+
+
+    box-shadow:
+
+    0 0 30px rgba(0,0,0,0.5);
+
+
+
+}
+
+
+
+
+
+
+h1 {
+
+
+    font-size: 38px;
+
+
+    margin-bottom: 25px;
+
+
+}
+
+
+
+
+
+
+#time {
+
+
+    font-size: 55px;
+
+
+
+    font-weight: bold;
+
+
+
+    letter-spacing: 3px;
+
+
+
+    color: #00ffff;
+
+
+
+    text-shadow:
+
+    0 0 10px #00ffff,
+
+    0 0 30px #00ffff;
+
+
+
+    margin-bottom: 15px;
+
+
+
+}
+
+
+
+
+
+
+
+#date {
+
+
+    font-size: 20px;
+
+
+
+    margin-bottom: 30px;
+
+
+
+    opacity: 0.9;
+
+
+}
+
+
+
+
+
+
+
+
+.section {
+
+
+    margin-top: 25px;
+
+
+
+    padding: 20px;
+
+
+
+    background: rgba(255,255,255,0.08);
+
+
+
+    border-radius: 15px;
+
+
+
+}
+
+
+
+
+
+
+h2 {
+
+
+    font-size: 22px;
+
+
+
+    margin-bottom: 15px;
+
+
+
+}
+
+
+
+
+
+
+
+
+select,
+input {
+
+
+    width: 80%;
+
+
+    padding: 12px;
+
+
+
+    margin: 8px;
+
+
+
+    border-radius: 10px;
+
+
+
+    border: none;
+
+
+
+    outline: none;
+
+
+
+    font-size: 16px;
+
+
+
+}
+
+
+
+
+
+
+#stopwatch {
+
+
+    font-size: 35px;
+
+
+
+    color: #00ff99;
+
+
+
+    margin: 15px;
+
+
+
+    font-weight: bold;
+
+
+
+}
+
+
+
+
+
+
+
+button {
+
+
+    padding: 10px 18px;
+
+
+
+    margin: 5px;
+
+
+
+    border: none;
+
+
+
+    border-radius: 20px;
+
+
+
+    cursor: pointer;
+
+
+
+    font-size: 15px;
+
+
+
+    background: #00ffff;
+
+
+
+    color: black;
+
+
+
+    transition: 0.3s;
+
+
+
+}
+
+
+
+
+
+
+button:hover {
+
+
+    transform: scale(1.1);
+
+
+
+    box-shadow:
+
+    0 0 15px #00ffff;
+
+
+
+}
+
+
+
+
+
+
+
+#alarmStatus {
+
+
+    margin-top: 10px;
+
+
+
+    font-size: 16px;
+
+
+
+}
+
+
+
+
+
+
+
+
+.controls {
+
+
+    margin-top: 25px;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* Light Mode */
+
+
+.light {
+
+
+    background: linear-gradient(
+
+        135deg,
+
+        #ffffff,
+
+        #87ceeb
+
+    );
+
+
+    color: black;
+
+
+}
+
+
+
+
+
+
+.light .clock-container {
+
+
+    background: rgba(0,0,0,0.1);
+
+
+}
+
+
+
+
+
+
+.light #time {
+
+
+    color: #0066ff;
+
+
+    text-shadow: none;
+
+
+}
+
+
+
+
+
+
+
+/* Mobile Responsive */
+
+
+
+@media(max-width:500px){
+
+
+
+    .clock-container {
+
+
+        width: 90%;
+
+
+        padding: 25px;
+
+
+    }
+
+
+
+    h1 {
+
+
+        font-size: 30px;
+
+
+    }
+
+
+
+    #time {
+
+
+        font-size: 38px;
+
+
+    }
+
+
+
+    button {
+
+
+        padding: 8px 12px;
+
+
+    }
+
+
+}

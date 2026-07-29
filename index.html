@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Advanced Digital Clock</title>
+
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <div class="clock-container">
+
+
+
+        <!-- Title -->
+
+        <h1>Digital Clock</h1>
+
+
+
+        <!-- Main Clock -->
+
+
+        <div id="time">
+
+            00:00:00 AM
+
+        </div>
+
+
+
+        <div id="date">
+
+            Loading Date...
+
+        </div>
+
+
+
+
+
+        <!-- Time Zone Section -->
+
+
+        <div class="section">
+
+
+            <h2>🌍 Select Time Zone</h2>
+
+
+            <select id="timezone">
+
+
+                <option value="Asia/Kolkata">
+
+                    India 🇮🇳
+
+                </option>
+
+
+                <option value="America/New_York">
+
+                    USA - New York 🇺🇸
+
+                </option>
+
+
+                <option value="America/Los_Angeles">
+
+                    USA - Los Angeles 🇺🇸
+
+                </option>
+
+
+                <option value="Europe/London">
+
+                    UK 🇬🇧
+
+                </option>
+
+
+                <option value="Asia/Tokyo">
+
+                    Japan 🇯🇵
+
+                </option>
+
+
+                <option value="Australia/Sydney">
+
+                    Australia 🇦🇺
+
+                </option>
+
+
+                <option value="Asia/Dubai">
+
+                    UAE 🇦🇪
+
+                </option>
+
+
+                <option value="Asia/Shanghai">
+
+                    China 🇨🇳
+
+                </option>
+
+
+                <option value="Europe/Paris">
+
+                    France 🇫🇷
+
+                </option>
+
+
+                <option value="Asia/Singapore">
+
+                    Singapore 🇸🇬
+
+                </option>
+
+
+                <option value="America/Toronto">
+
+                    Canada 🇨🇦
+
+                </option>
+
+
+            </select>
+
+
+        </div>
+
+
+
+
+
+
+        <!-- Stopwatch Section -->
+
+
+        <div class="section">
+
+
+            <h2>⏱ Stopwatch</h2>
+
+
+
+            <div id="stopwatch">
+
+                00:00:00
+
+            </div>
+
+
+
+
+            <button id="start">
+
+                Start
+
+            </button>
+
+
+
+            <button id="pause">
+
+                Pause
+
+            </button>
+
+
+
+            <button id="reset">
+
+                Reset
+
+            </button>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+        <!-- Alarm Section -->
+
+
+        <div class="section">
+
+
+            <h2>🔔 Alarm Clock</h2>
+
+
+
+
+            <input type="time" id="alarmTime">
+
+
+
+            <select id="alarmFormat">
+
+
+                <option value="AM">
+
+                    AM
+
+                </option>
+
+
+                <option value="PM">
+
+                    PM
+
+                </option>
+
+
+            </select>
+
+
+
+
+            <br>
+
+
+            <button id="setAlarm">
+
+                Set Alarm
+
+            </button>
+
+
+
+            <p id="alarmStatus">
+
+                No Alarm Set
+
+            </p>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+        <!-- Control Buttons -->
+
+
+        <div class="controls">
+
+
+
+            <button id="themeBtn">
+
+                🌙 Dark Mode
+
+            </button>
+
+
+
+
+            <button id="fullscreenBtn">
+
+                ⛶ Full Screen
+
+            </button>
+
+
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+
+
+    <script src="script.js"></script>
+
+
+
+</body>
+
+</html>
