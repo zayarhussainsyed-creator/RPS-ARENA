@@ -1,12 +1,9 @@
 * {
 
     margin: 0;
-
     padding: 0;
-
     box-sizing: border-box;
-
-    font-family: "Poppins", Arial, sans-serif;
+    font-family: "Poppins", sans-serif;
 
 }
 
@@ -18,29 +15,69 @@ body {
     min-height: 100vh;
 
 
-    display: flex;
+    background:
 
-    justify-content: center;
+    radial-gradient(
+        circle at top left,
+        #ff512f,
+        transparent 35%
+    ),
 
-    align-items: center;
+    radial-gradient(
+        circle at bottom right,
+        #dd2476,
+        transparent 40%
+    ),
 
-
-
-    background: linear-gradient(
+    linear-gradient(
         135deg,
-        #141e30,
-        #243b55,
-        #000000
+        #0f0c29,
+        #302b63,
+        #24243e
     );
 
 
-    background-size: 300% 300%;
+    background-size:200% 200%;
 
 
-    animation: moveBackground 8s infinite alternate;
+    animation: arenaMove 10s infinite alternate;
 
 
-    color: white;
+    color:white;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    padding:20px;
+
+
+}
+
+
+
+
+@keyframes arenaMove {
+
+
+    from{
+
+        background-position:0% 50%;
+
+    }
+
+
+    to{
+
+        background-position:100% 50%;
+
+    }
 
 
 }
@@ -49,63 +86,67 @@ body {
 
 
 
-@keyframes moveBackground {
+
+/* Main Card */
 
 
-    0% {
-
-        background-position: left;
-
-    }
+.container {
 
 
-    100% {
-
-        background-position: right;
-
-    }
+    width:95%;
 
 
-}
+    max-width:850px;
 
 
+    padding:35px;
+
+
+    text-align:center;
 
 
 
+    background:
 
-.clock-container {
-
-
-    width: 450px;
-
-
-    padding: 35px;
+    rgba(255,255,255,0.10);
 
 
 
-    text-align: center;
+    backdrop-filter:blur(18px);
 
 
 
-    background: rgba(255,255,255,0.12);
+    border-radius:25px;
 
 
 
-    border-radius: 25px;
+    border:
 
-
-
-    backdrop-filter: blur(15px);
+    1px solid rgba(255,255,255,0.2);
 
 
 
     box-shadow:
 
-    0 0 30px rgba(0,0,0,0.5);
+
+    0 0 40px rgba(255,80,150,0.35);
 
 
 
 }
+
+
+
+
+
+
+
+.hidden {
+
+    display:none;
+
+}
+
 
 
 
@@ -115,117 +156,33 @@ body {
 h1 {
 
 
-    font-size: 38px;
+    font-size:36px;
 
 
-    margin-bottom: 25px;
-
-
-}
-
-
-
-
-
-
-#time {
-
-
-    font-size: 55px;
-
-
-
-    font-weight: bold;
-
-
-
-    letter-spacing: 3px;
-
-
-
-    color: #00ffff;
-
+    margin-bottom:20px;
 
 
     text-shadow:
 
-    0 0 10px #00ffff,
 
-    0 0 30px #00ffff;
-
-
-
-    margin-bottom: 15px;
-
+    0 0 15px #ff4ecd;
 
 
 }
-
-
-
-
-
-
-
-#date {
-
-
-    font-size: 20px;
-
-
-
-    margin-bottom: 30px;
-
-
-
-    opacity: 0.9;
-
-
-}
-
-
-
-
-
-
-
-
-.section {
-
-
-    margin-top: 25px;
-
-
-
-    padding: 20px;
-
-
-
-    background: rgba(255,255,255,0.08);
-
-
-
-    border-radius: 15px;
-
-
-
-}
-
-
-
 
 
 
 h2 {
 
+    margin:15px 0;
 
-    font-size: 22px;
-
-
-
-    margin-bottom: 15px;
+}
 
 
+
+p {
+
+    font-size:18px;
 
 }
 
@@ -236,112 +193,61 @@ h2 {
 
 
 
-select,
-input {
-
-
-    width: 80%;
-
-
-    padding: 12px;
-
-
-
-    margin: 8px;
-
-
-
-    border-radius: 10px;
-
-
-
-    border: none;
-
-
-
-    outline: none;
-
-
-
-    font-size: 16px;
-
-
-
-}
-
-
-
-
-
-
-#stopwatch {
-
-
-    font-size: 35px;
-
-
-
-    color: #00ff99;
-
-
-
-    margin: 15px;
-
-
-
-    font-weight: bold;
-
-
-
-}
-
-
-
-
-
+/* Buttons */
 
 
 button {
 
 
-    padding: 10px 18px;
+    padding:14px 28px;
+
+
+    margin:10px;
+
+
+    border:none;
+
+
+    border-radius:30px;
+
+
+    cursor:pointer;
+
+
+    font-size:17px;
+
+
+    color:white;
 
 
 
-    margin: 5px;
+    background:
+
+
+    linear-gradient(
+
+        45deg,
+
+        #ff416c,
+
+        #ff4b2b
+
+    );
 
 
 
-    border: none;
+    box-shadow:
+
+
+    0 0 20px rgba(255,65,108,0.6);
 
 
 
-    border-radius: 20px;
-
-
-
-    cursor: pointer;
-
-
-
-    font-size: 15px;
-
-
-
-    background: #00ffff;
-
-
-
-    color: black;
-
-
-
-    transition: 0.3s;
+    transition:0.3s;
 
 
 
 }
-
 
 
 
@@ -350,13 +256,118 @@ button {
 button:hover {
 
 
-    transform: scale(1.1);
+    transform:scale(1.12);
+
+
+    box-shadow:
+
+
+    0 0 35px #ff416c;
+
+
+}
+
+
+
+
+
+
+
+/* Start Lobby */
+
+
+.options {
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    flex-wrap:wrap;
+
+
+}
+
+
+
+#difficultyBox,
+#matchBox {
+
+
+    margin-top:25px;
+
+
+    padding:20px;
+
+
+    background:
+
+
+    rgba(0,0,0,0.25);
+
+
+
+    border-radius:20px;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* Players */
+
+
+.players {
+
+
+    display:flex;
+
+
+    justify-content:space-around;
+
+
+    gap:25px;
+
+
+    flex-wrap:wrap;
+
+
+}
+
+
+
+.playerCard {
+
+
+    width:300px;
+
+
+    padding:25px;
+
+
+    border-radius:25px;
+
+
+
+    background:
+
+
+    rgba(255,255,255,0.12);
 
 
 
     box-shadow:
 
-    0 0 15px #00ffff;
+
+    inset 0 0 20px rgba(255,255,255,0.1);
 
 
 
@@ -368,89 +379,52 @@ button:hover {
 
 
 
-#alarmStatus {
+/* Choice Buttons */
 
 
-    margin-top: 10px;
+.choices button {
 
 
-
-    font-size: 16px;
-
+    width:85px;
 
 
-}
+    height:85px;
 
 
+    font-size:40px;
 
 
-
-
-
-
-.controls {
-
-
-    margin-top: 25px;
+    padding:5px;
 
 
 
-}
+    background:
 
 
+    linear-gradient(
 
+        45deg,
 
+        #667eea,
 
-
-
-
-/* Light Mode */
-
-
-.light {
-
-
-    background: linear-gradient(
-
-        135deg,
-
-        #ffffff,
-
-        #87ceeb
+        #764ba2
 
     );
 
 
-    color: black;
-
-
 }
 
 
 
 
 
-
-.light .clock-container {
-
-
-    background: rgba(0,0,0,0.1);
+#computerChoice {
 
 
-}
+    font-size:85px;
 
 
-
-
-
-
-.light #time {
-
-
-    color: #0066ff;
-
-
-    text-shadow: none;
+    margin:25px;
 
 
 }
@@ -461,51 +435,306 @@ button:hover {
 
 
 
-/* Mobile Responsive */
+/* Multiplayer */
+
+
+#multiplayerBox {
+
+
+    margin-top:25px;
+
+
+    padding:20px;
+
+
+    border-radius:20px;
 
 
 
-@media(max-width:500px){
+    background:
+
+
+    rgba(0,0,0,0.35);
 
 
 
-    .clock-container {
+}
 
 
-        width: 90%;
 
 
-        padding: 25px;
+
+
+
+/* Result */
+
+
+#result {
+
+
+    margin:25px;
+
+
+    font-size:30px;
+
+
+    color:#00ffcc;
+
+
+    text-shadow:
+
+
+    0 0 15px cyan;
+
+
+}
+
+
+
+
+
+
+
+
+/* Match Score */
+
+
+.matchScore {
+
+
+    margin:25px;
+
+
+    padding:20px;
+
+
+    border-radius:20px;
+
+
+
+    background:
+
+
+    rgba(0,0,0,0.35);
+
+
+
+}
+
+
+
+.matchScore h3 {
+
+
+    font-size:45px;
+
+
+}
+
+
+
+
+
+
+
+
+/* Final Result */
+
+
+.finalScore {
+
+
+    padding:25px;
+
+
+    margin:25px;
+
+
+    border-radius:20px;
+
+
+
+    background:
+
+
+    rgba(255,255,255,0.12);
+
+
+
+    font-size:25px;
+
+
+}
+
+
+
+#winnerText {
+
+
+    color:#ffd700;
+
+
+    font-size:35px;
+
+
+    animation: glow 1.5s infinite alternate;
+
+
+}
+
+
+
+
+@keyframes glow {
+
+
+    from{
+
+        text-shadow:
+
+        0 0 10px gold;
+
+    }
+
+
+    to{
+
+        text-shadow:
+
+        0 0 30px yellow;
+
+    }
+
+
+}
+
+
+
+
+
+
+
+/* Dashboard Popup */
+
+
+#dashboard {
+
+
+    position:fixed;
+
+
+    top:50%;
+
+
+    left:50%;
+
+
+    transform:
+
+
+    translate(-50%,-50%);
+
+
+
+    z-index:20;
+
+
+}
+
+
+
+.stats {
+
+
+    padding:25px;
+
+
+    border-radius:20px;
+
+
+
+    background:
+
+
+    rgba(0,0,0,0.4);
+
+
+
+}
+
+
+
+.stats p {
+
+
+    margin:15px;
+
+
+    font-size:20px;
+
+
+}
+
+
+
+
+
+
+
+/* Mobile */
+
+
+@media(max-width:600px){
+
+
+    .container{
+
+
+        padding:20px;
+
+    }
+
+
+
+    h1{
+
+        font-size:25px;
+
+    }
+
+
+
+    .playerCard{
+
+        width:100%;
+
+    }
+
+
+
+    .choices button{
+
+
+        width:60px;
+
+
+        height:60px;
+
+
+        font-size:30px;
 
 
     }
 
 
 
-    h1 {
+    button{
 
 
-        font-size: 30px;
+        font-size:14px;
 
 
-    }
-
-
-
-    #time {
-
-
-        font-size: 38px;
-
-
-    }
-
-
-
-    button {
-
-
-        padding: 8px 12px;
+        padding:12px 20px;
 
 
     }
