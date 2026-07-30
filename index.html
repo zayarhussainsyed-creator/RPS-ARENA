@@ -2,526 +2,152 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Rock Paper Scissors Ultimate</title>
+    <title>RPS AI Challenge</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
-
 
 <body>
 
+    <!-- ================= START PAGE ================= -->
+    <div class="container" id="startPage">
 
-<!-- ================= START PAGE ================= -->
+        <h1>🎮 RPS AI Challenge</h1>
+        <p>Battle against the Computer AI</p>
 
-<div class="container" id="startPage">
+        <!-- Difficulty Selection -->
+        <div id="difficultyBox">
 
+            <h2>Select Difficulty</h2>
 
-    <h1>🎮 Rock Paper Scissors Ultimate</h1>
-
-    <p>Enter The Battle Arena</p>
-
-
-
-    <!-- Mode Selection -->
-
-    <div class="options">
-
-
-        <button onclick="selectMode('computer')">
-            🤖 Computer Mode
-        </button>
-
-
-        <button onclick="selectMode('multiplayer')">
-            👥 Multiplayer
-        </button>
-
-
-    </div>
-
-
-
-
-
-    <!-- Difficulty Only For Computer -->
-
-
-    <div id="difficultyBox" class="hidden">
-
-
-        <h2>
-            Select Difficulty
-        </h2>
-
-
-        <button onclick="setDifficulty('easy')">
-            🟢 Easy
-        </button>
-
-
-        <button onclick="setDifficulty('medium')">
-            🟡 Medium
-        </button>
-
-
-        <button onclick="setDifficulty('hard')">
-            🔴 Hard
-        </button>
-
-
-    </div>
-
-
-
-
-
-
-
-    <!-- Match Selection -->
-
-
-    <div id="matchBox" class="hidden">
-
-
-        <h2>
-            Select Match Type
-        </h2>
-
-
-        <button onclick="setMatch(3)">
-            🏆 Best Of 3
-        </button>
-
-
-        <button onclick="setMatch(5)">
-            🏆 Best Of 5
-        </button>
-
-
-
-    </div>
-
-
-
-
-
-    <button class="startBtn" onclick="startGame()">
-
-        🚀 Start Game
-
-    </button>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<!-- ================= GAME PAGE ================= -->
-
-
-
-<div class="container hidden" id="gamePage">
-
-
-    <h1>
-        🔥 Battle Arena 🔥
-    </h1>
-
-
-
-    <h2 id="matchTitle">
-        Best Of 3
-    </h2>
-
-
-
-    <h3>
-
-        Round:
-        <span id="roundNumber">
-            1
-        </span>
-
-    </h3>
-
-
-
-
-
-
-    <div class="players">
-
-
-
-
-
-        <!-- Player 1 -->
-
-
-        <div class="playerCard">
-
-
-            <h2>
-                Player
-            </h2>
-
-
-            <div class="choices">
-
-
-                <button onclick="selectChoice('rock')">
-                    🪨
-                </button>
-
-
-                <button onclick="selectChoice('paper')">
-                    📄
-                </button>
-
-
-                <button onclick="selectChoice('scissors')">
-                    ✂️
-                </button>
-
-
-            </div>
-
+            <button onclick="setDifficulty('easy')">🟢 Easy</button>
+            <button onclick="setDifficulty('medium')">🟡 Medium</button>
+            <button onclick="setDifficulty('hard')">🔴 Hard</button>
 
         </div>
 
+        <!-- Match Selection -->
+        <div id="matchBox" class="hidden">
 
+            <h2>Select Match Type</h2>
 
-
-
-
-
-        <!-- Opponent -->
-
-
-        <div class="playerCard">
-
-
-            <h2 id="player2Name">
-                Computer
-            </h2>
-
-
-
-            <div id="computerChoice">
-
-                ❓
-
-            </div>
-
+            <button onclick="setMatch(3)">🏆 Best Of 3</button>
+            <button onclick="setMatch(5)">🏆 Best Of 5</button>
 
         </div>
 
-
-
+        <button class="startBtn" onclick="startGame()">
+            🚀 Start Game
+        </button>
 
     </div>
 
+    <!-- ================= GAME PAGE ================= -->
+    <div class="container hidden" id="gamePage">
 
+        <h1>🔥 Battle Arena 🔥</h1>
 
-
-
-
-
-
-    <!-- Multiplayer Selection -->
-
-
-    <div id="multiplayerBox" class="hidden">
-
-
-        <h2>
-            Player 2 Select Move
-        </h2>
-
-
-        <button onclick="playerTwoChoice('rock')">
-            🪨
-        </button>
-
-
-        <button onclick="playerTwoChoice('paper')">
-            📄
-        </button>
-
-
-        <button onclick="playerTwoChoice('scissors')">
-            ✂️
-        </button>
-
-
-
-        <p id="waitingText">
-
-            Waiting...
-
-        </p>
-
-
-    </div>
-
-
-
-
-
-
-
-    <!-- Result -->
-
-
-    <h2 id="result">
-
-        Make Your Move
-
-    </h2>
-
-
-
-
-
-
-
-    <!-- Round Score -->
-
-
-    <div class="matchScore">
-
-
-        <h2>
-            Current Match Score
-        </h2>
-
+        <h2 id="matchTitle">Best Of 3</h2>
 
         <h3>
-
-
-            <span id="playerScore">
-                0
-            </span>
-
-
-            -
-
-            <span id="opponentScore">
-                0
-            </span>
-
-
+            Round:
+            <span id="roundNumber">1</span>
         </h3>
 
+        <div class="players">
+
+            <!-- Player -->
+            <div class="playerCard">
+
+                <h2>You</h2>
+
+                <div class="choices">
+
+                    <button onclick="play('rock')">🪨</button>
+                    <button onclick="play('paper')">📄</button>
+                    <button onclick="play('scissors')">✂️</button>
+
+                </div>
+
+            </div>
+
+            <!-- Computer -->
+            <div class="playerCard">
+
+                <h2>Computer</h2>
+
+                <div id="computerChoice">❓</div>
+
+            </div>
+
+        </div>
+
+        <!-- Result -->
+        <h2 id="result">Make Your Move</h2>
+
+        <!-- Match Score -->
+        <div class="matchScore">
+
+            <h2>Current Match Score</h2>
+
+            <h3>
+                <span id="playerScore">0</span>
+                -
+                <span id="opponentScore">0</span>
+            </h3>
+
+        </div>
+
+        <button onclick="showDashboard()">📊 Total Score</button>
+        <button onclick="restartGame()">🔄 Restart</button>
+        <button onclick="goHome()">🏠 Home</button>
 
     </div>
 
+    <!-- ================= RESULT PAGE ================= -->
+    <div class="container hidden" id="resultPage">
 
+        <h1>🏆 Match Result</h1>
 
+        <h2 id="winnerText"></h2>
 
+        <div class="finalScore">
 
+            <h2>Final Score</h2>
 
-    <button onclick="showDashboard()">
+            <p id="finalResult"></p>
 
-        📊 Total Score
+        </div>
 
-    </button>
-
-
-
-
-    <button onclick="restartGame()">
-
-        🔄 Restart
-
-    </button>
-
-
-
-
-    <button onclick="goHome()">
-
-        🏠 Home
-
-    </button>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<!-- ================= RESULT PAGE ================= -->
-
-
-<div class="container hidden" id="resultPage">
-
-
-    <h1>
-        🏆 Match Result
-    </h1>
-
-
-
-    <h2 id="winnerText">
-
-    </h2>
-
-
-
-
-    <div class="finalScore">
-
-
-        <h2>
-            Final Score
-        </h2>
-
-
-        <p id="finalResult">
-
-        </p>
-
+        <button onclick="restartMatch()">🔄 Play Again</button>
+        <button onclick="showDashboard()">📊 Dashboard</button>
+        <button onclick="goHome()">🏠 Home</button>
 
     </div>
 
+    <!-- ================= DASHBOARD ================= -->
+    <div class="container hidden" id="dashboard">
 
+        <h1>📊 Total Score</h1>
 
+        <div class="stats">
 
-    <button onclick="restartMatch()">
+            <p>Matches: <span id="matches">0</span></p>
+            <p>Wins: <span id="wins">0</span></p>
+            <p>Losses: <span id="losses">0</span></p>
+            <p>Draws: <span id="draws">0</span></p>
+            <p>Points: <span id="points">0</span></p>
 
-        🔄 Play Again
+        </div>
 
-    </button>
-
-
-
-    <button onclick="showDashboard()">
-
-        📊 Dashboard
-
-    </button>
-
-
-
-
-    <button onclick="goHome()">
-
-        🏠 Home
-
-    </button>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<!-- ================= DASHBOARD ================= -->
-
-
-<div class="container hidden" id="dashboard">
-
-
-    <h1>
-        📊 Total Score
-    </h1>
-
-
-
-    <div class="stats">
-
-
-        <p>
-            Matches:
-            <span id="matches">
-                0
-            </span>
-        </p>
-
-
-        <p>
-            Wins:
-            <span id="wins">
-                0
-            </span>
-        </p>
-
-
-        <p>
-            Losses:
-            <span id="losses">
-                0
-            </span>
-        </p>
-
-
-        <p>
-            Draws:
-            <span id="draws">
-                0
-            </span>
-        </p>
-
-
-        <p>
-            Points:
-            <span id="points">
-                0
-            </span>
-        </p>
-
-
+        <button onclick="hideDashboard()">Close</button>
 
     </div>
 
-
-
-
-    <button onclick="hideDashboard()">
-
-        Close
-
-    </button>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 
 </body>
 
